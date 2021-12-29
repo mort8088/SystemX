@@ -1,0 +1,127 @@
+﻿// -----------------------------------------------------------------------
+// <copyright file="MessageBoxScreen.cs" company="Mort8088 Games">
+// Copyright (c) 2012-22 Dave Henry for Mort8088 Games.
+// </copyright>
+// -----------------------------------------------------------------------
+
+using System;
+using SystemX.Extensions;
+using SystemX.Input;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace SystemX.GameState {
+    public class MessageBoxScreen : GameScreen {
+#if XBOX
+        const string usageText = "[A] = OK [B] = cancel";
+#else
+        private const string usageText = "Enter = OK Esc = cancel";
+#endif
+        private readonly string message;
+        private readonly bool _includeUsageText;
+
+        public event EventHandler<EventArgs> Accepted;
+        public event EventHandler<EventArgs> Cancelled;
+
+        /// <summary>
+        ///     Constructor automatically includes the standard "A=OK, B=cancel"
+        ///     usage text prompt.
+        /// </summary>
+        public MessageBoxScreen(string message) : this(message, true) {}
+
+        /// <summary>
+        ///     Constructor lets the caller specify whether to include the standard
+        ///     "A=OK, B=cancel" usage text prompt.
+        /// </summary>
+        public MessageBoxScreen(string message, bool includeUsageText) {
+            _includeUsageText = includeUsageText;
+            this.message = message;
+
+            IsPopup = true;
+
+            TransitionOnTime = TimeSpan.FromSeconds(0.2);
+            TransitionOffTime = TimeSpan.FromSeconds(0.2);
+        }
+
+        /// <summary>
+        ///     Responds to user input, accepting or canceling the message box.
+        /// </summary>
+        public override void HandleInput(InputManager input) {
+            // We pass in our ControllingPlayer, which may either be null (to
+            // accept input from any player) or a specific index. If we pass a null
+            // controlling player, the InputState helper returns to us which player
+            // actually provided the input. We pass that through to our Accepted and
+            // Canceled events, so they can tell which player triggered them.
+            if (input.IsMenuSelect()) {
+                // Raise the accepted event, then exit the message box.
+                if (Accepted != null)
+                    Accepted(this, new EventArgs());
+
+                ExitScreen();
+            } else if (input.IsMenuCancel()) {
+                // Raise the canceled event, then exit the message box.
+                if (Cancelled != null)
+                    Cancelled(this, new EventArgs());
+
+                ExitScreen();
+            }
+        }
+
+        /// <summary>
+        ///     Draws the message box.
+        /// </summary>
+        public override void Draw(GameTime gameTime) {
+            SpriteBatchExtended spriteBatch = ScreenManager.SpriteBatch;
+            SpriteFont font = ScreenManager.Font["System"];
+
+            // Darken down any other screens that were drawn beneath the pop-up.
+            ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2 / 3);
+
+            // Center the message text in the viewport.
+            Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
+            Vector2 viewportSize = new Vector2(viewport.Width, viewport.Height);
+
+            Vector2 textSize = font.MeasureString(message);
+
+            Vector2 textPosition = (viewportSize - textSize) / 2;
+
+            Vector2 UsagePosition = Vector2.Zero;
+
+            // The background includes a border somewhat larger than the text itself.
+            const int hPad = 32;
+            const int vPad = 16;
+
+            Rectangle backgroundRectangle = new Rectangle(
+                (int)textPosition.X - hPad,
+                (int)textPosition.Y - vPad,
+                (int)textSize.X + (hPad * 2),
+                (int)textSize.Y + (vPad * 2));
+
+            // Fade the pop-up alpha during transitions.
+            Color color = Color.White * TransitionAlpha;
+
+            spriteBatch.Begin();
+
+            // Draw the background rectangle.
+            spriteBatch.Draw(
+                ScreenManager.SpriteSheets["Main"].Page,
+                backgroundRectangle,
+                ScreenManager.SpriteSheets["Main"]["gradient"].Source,
+                color);
+
+            // Draw the message box text.
+            spriteBatch.GlifString(font, message, textPosition, color);
+
+            if (_includeUsageText) {
+                textSize = font.MeasureString(usageText);
+                textPosition = new Vector2(
+                    viewport.TitleSafeArea.Right - (textSize.X + hPad),
+                    viewport.TitleSafeArea.Bottom - (textSize.Y + vPad));
+
+                spriteBatch.GlifString(font, usageText, textPosition, color);
+            }
+
+            spriteBatch.End();
+        }
+    }
+}
