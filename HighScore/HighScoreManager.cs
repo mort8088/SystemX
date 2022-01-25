@@ -11,7 +11,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Timers;
 using SystemX.Helpers;
-using GameJoltAPI;
+//using GameJoltAPI;
 
 namespace SystemX.HighScore
 {
@@ -58,13 +58,16 @@ namespace SystemX.HighScore
 
         private static void TimerTrigger(object sender, System.Timers.ElapsedEventArgs e)
         {
-            if (Settings.AllowAPICalls)
-                UpdateRemoteScores();
+            // TODO: Add GameJolt API
+            //if (Settings.AllowAPICalls)
+            //    UpdateRemoteScores();
 
         }
 
         public static void UpdateRemoteScores()
         {
+            // TODO: Add GameJolt API
+            /*
             ScoresClient sc = new ScoresClient();
             sc.OnFetchComplete += (sender, eventArgs) =>
             {
@@ -83,7 +86,7 @@ namespace SystemX.HighScore
                 }
             };
             sc.FetchScores();
-
+            */
             SortRecs();
         }
 
@@ -106,9 +109,11 @@ namespace SystemX.HighScore
 
         public static void AddScore(string name, int score)
         {
+            // TODO: Add GameJolt API
+            /*
             ScoresClient sc = new ScoresClient();
             sc.AddScores("", score, _TableID);
-
+            */
             LocalHighScores.Add(new HighScoreRec
             {
                 Name = name,
@@ -121,7 +126,10 @@ namespace SystemX.HighScore
 
         public static void AddScore(int score)
         {
+            // TODO: Add GameJolt API
+            /*
             AddScore(Settings.Username, score);
+            */
         }
 
         private static void SortRecs()

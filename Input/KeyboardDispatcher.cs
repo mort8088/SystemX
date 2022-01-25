@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Windows;
-using System.Windows.Forms;
+//using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 
 namespace SystemX.Input
@@ -76,7 +76,8 @@ namespace SystemX.Input
         [STAThread]
         private void PasteThread()
         {
-            _pasteResult = Clipboard.ContainsText() ? Clipboard.GetText() : "";
+            // TODO: Paste not working yet.
+            _pasteResult = "";//Clipboard.ContainsText() ? Clipboard.GetText() : "";
         }
     }
 }

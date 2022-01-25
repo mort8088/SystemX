@@ -7,7 +7,7 @@
 using System;
 using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
+//using System.Windows.Forms;
 using SystemX.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -54,6 +54,7 @@ namespace SystemX.Common {
         /// <summary>
         ///     parent game
         /// </summary>
+        //private readonly Game _game;
         /// <summary>
         ///     parent window
         /// </summary>
@@ -91,7 +92,7 @@ namespace SystemX.Common {
             int bestFullScreenWidth, bestFullScreenHeight;
 
             // store a reference to the parent game
-            // _game = game;
+            //_game = game;
 
             // store a reference to the parent window
             _window = window;
@@ -111,7 +112,9 @@ namespace SystemX.Common {
             // stop the user from being able to make the window so small that we lose the graphics device ;)
             // this happens if the window height becomes zero so you can set the minimum size as low as you like as
             // long as you don't allow it to reach zero. if you turn off AllowUserResizing you don't need this
-            Control.FromHandle(window.Handle).MinimumSize = new Size(320, 200);
+            // TODO: Fix this or at least be aware it will break.
+            //Control.FromHandle(window.Handle).MinimumSize = new Size(320, 200);
+            
 
             // subscribe to the game window's ClientSizeChanged event - again not needed if you turn off user resizing
             window.ClientSizeChanged += WindowClientSizeChanged;
