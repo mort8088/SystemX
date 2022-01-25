@@ -5,10 +5,10 @@
     <RootNamespace>SystemX</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>SystemX</PackageId>
-    <PackageVersion>1.0.3</PackageVersion>
+    <PackageVersion>0.0.1</PackageVersion>
     <Title>MonoGame SystemX</Title>
     <Authors>Dave 'mort8088' Henry</Authors>
-    <Description>SystemX.</Description>
+    <Description>SystemX - My Extension Library for writing games in MonoGame.</Description>
     <Copyright>Copyright (c) 2022 Dave 'mort8088' Henry</Copyright>
     <PackageProjectUrl>https://mort8088.com/games/systemx/</PackageProjectUrl>
     <PackageLicenseUrl>http://opensource.org/licenses/MIT</PackageLicenseUrl>
