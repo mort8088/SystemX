@@ -38,7 +38,9 @@ namespace SystemX.Input
                 {
                     //XNA runs in Multiple Thread Apartment state, which cannot receive clipboard
                     Thread thread = new Thread(PasteThread);
+#if WINDOWS
                     thread.SetApartmentState(ApartmentState.STA);
+#endif
                     thread.Start();
                     thread.Join();
                     _subscriber.RecieveTextInput(_pasteResult);

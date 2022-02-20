@@ -480,11 +480,14 @@ namespace SystemX.Common {
 
                 // Miscellaneous Settings
                 Settings.AddSettingsGroup("Misc");
+
+                Settings["Misc"].AddSetting("MouseEnabled", true);
 #if DEBUG
                 Settings["Misc"].AddSetting("AllowCLI", true);
 #else
                 Settings["Misc"].AddSetting("AllowCLI", false);
 #endif
+
                 UpdateDefaultSettings();
             }
             Services.AddService(typeof(I_Config), Settings);
