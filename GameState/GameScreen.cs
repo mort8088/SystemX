@@ -46,19 +46,21 @@ namespace SystemX.GameState {
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
 
             ScreenSize = new Point(1280, 720);
+            Window = new Window(ScreenSize);
         }
 
         protected GameScreen(string windowAsset)
             : this() {
             if (string.IsNullOrEmpty(windowAsset)) throw new ArgumentNullException("windowAsset");
 
-            WindowAsset = string.Format(@"Data\GUI\{0}.GUI", windowAsset);
+            WindowAsset = Path.Combine("Data", "GUI", string.Format("{0}.GUI", windowAsset));
         }
 
         protected GameScreen(string windowAsset, Point screenSize)
             : this() {
             ScreenSize = screenSize;
-            WindowAsset = string.Format(@"Data\GUI\{0}.GUI", windowAsset);
+            Window = new Window(ScreenSize);
+            WindowAsset = Path.Combine("Data", "GUI", string.Format("{0}.GUI", windowAsset));
         }
 
         /// <summary>

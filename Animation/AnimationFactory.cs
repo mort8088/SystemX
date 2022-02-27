@@ -18,7 +18,7 @@ namespace SystemX.Animation {
 
         public static void Initialise(I_SpriteSheetLibrary spriteSheetLibrary) {
             SpriteSheetLibrary = spriteSheetLibrary;
-            const string AnimationFile = @"Content\Textures\Animation.dat";
+            string AnimationFile = Path.Combine("Content", "Textures", "Animation.dat" );
 
             if (!File.Exists(Path.Combine(MyPathHelper.GameFolder, AnimationFile)))
                 throw new InvalidDataException("Missing Animation.dat");

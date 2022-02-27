@@ -51,7 +51,10 @@ namespace SystemX.CommandProcesser {
             }
 
             // Check for script files
-            foreach (string filename in Directory.GetFiles(Path.Combine(gm.Content.RootDirectory, @"Data\Script"), "*.sxs")) {
+            List<string> filenames = new List<string>();
+            filenames.AddRange(Directory.GetFiles(Path.Combine(gm.Content.RootDirectory, "Data","Script"), "*.sxs"));
+            filenames.AddRange(Directory.GetFiles(Path.Combine(gm.Content.RootDirectory, "Data","Script"), "*.SXS"));
+            foreach (string filename in filenames) {
                 try {
                     XmlDocument scriptFile = new XmlDocument();
                     scriptFile.Load(filename);

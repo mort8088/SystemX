@@ -448,7 +448,6 @@ namespace SystemX.Common {
             LogFile = new LoggerService(Path.Combine(PathHelper.GameFolder, string.Format("{0}.log", _gameName)));
             Services.AddService(typeof(I_LoggerService), LogFile);
             LogFile.WriteLine("Game State Manager Started.");
-
             if (File.Exists(Path.Combine(PathHelper.RootDirectory, string.Format("{0}.ini", _gameName)))) {
                 UsingDefaultSettings = false;
                 Settings = new ConfigIni(Path.Combine(PathHelper.RootDirectory, string.Format("{0}.ini", _gameName)));
