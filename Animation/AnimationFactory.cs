@@ -1,4 +1,5 @@
-﻿// -----------------------------------------------------------------------
+﻿using System.Globalization;
+// -----------------------------------------------------------------------
 // <copyright file="AnimationFactory.cs" company="Mort8088 Games">
 // Copyright (c) 2012-22 Dave Henry for Mort8088 Games.
 // </copyright>
@@ -17,6 +18,9 @@ namespace SystemX.Animation {
         public static I_SpriteSheetLibrary SpriteSheetLibrary { get; private set; }
 
         public static void Initialise(I_SpriteSheetLibrary spriteSheetLibrary) {
+            AnimationFactory.Initialize(spriteSheetLibrary); 
+        }
+        public static void Initialize(I_SpriteSheetLibrary spriteSheetLibrary) {
             SpriteSheetLibrary = spriteSheetLibrary;
             string AnimationFile = Path.Combine("Content", "Textures", "Animation.dat" );
 
