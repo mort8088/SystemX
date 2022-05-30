@@ -19,7 +19,7 @@ namespace SystemX.GUI.Visuals {
         HorizontalAlignment HorizontalAlignment { get; set; }
         VerticalAlignment VerticalAlignment { get; set; }
         Visibility Visibility { get; set; }
-        void LoadGraphics(GameStatemanager gsm);
+        void LoadGraphics(GameStateManager gsm);
         void UnloadGraphics();
         void Update(float elapsedSeconds);
         void Draw(GraphicsDevice device, SpriteBatchExtended sb);

@@ -9,9 +9,9 @@ using SystemX.Common;
 namespace SystemX.CommandProcesser.Commands {
     public interface I_Command {
         /// <summary>
-        ///     The GameStatemanager that this command is running in.
+        ///     The GameStateManager that this command is running in.
         /// </summary>
-        GameStatemanager Gm { get; set; }
+        GameStateManager Gm { get; set; }
 
         /// <summary>
         ///     Name of the command used to make the call

@@ -9,7 +9,7 @@ using SystemX.Common;
 namespace SystemX.CommandProcesser.Commands {
     public class EchoCommand : I_Command {
         private string _tmp = string.Empty;
-        public GameStatemanager Gm { get; set; }
+        public GameStateManager Gm { get; set; }
 
         public string Name {
             get {

@@ -180,7 +180,7 @@ namespace SystemX.Debug {
         }
 
         // Reference of debug manager.
-        private readonly GameStatemanager _debugManager;
+        private readonly GameStateManager _debugManager;
 
         // Logs for each frames.
         private FrameLog[] _logs;
@@ -223,7 +223,7 @@ namespace SystemX.Debug {
         #endregion
 
         #region Initialization
-        public TimeRuler(GameStatemanager gsm)
+        public TimeRuler(GameStateManager gsm)
             : base(gsm) {
 #if TRACE
             _debugManager = gsm;

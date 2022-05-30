@@ -37,7 +37,7 @@ namespace SystemX.GUI.Visuals {
         public VerticalAlignment VerticalAlignment { get; set; }
         public Visibility Visibility { get; set; }
 
-        public void LoadGraphics(GameStatemanager gsm) {
+        public void LoadGraphics(GameStateManager gsm) {
             if (Texture == null)
                 Texture = (I_SpriteSheetLibrary)gsm.Services.GetService(typeof(I_SpriteSheetLibrary));
 

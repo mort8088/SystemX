@@ -46,7 +46,7 @@ namespace SystemX.GUI.Visuals
         public VerticalAlignment VerticalAlignment { get; set; }
         public Visibility Visibility { get; set; }
 
-        public void LoadGraphics(GameStatemanager gsm)
+        public void LoadGraphics(GameStateManager gsm)
         {
             if (_font == null)
                 _font = (I_Fonts)gsm.Services.GetService(typeof(I_Fonts));

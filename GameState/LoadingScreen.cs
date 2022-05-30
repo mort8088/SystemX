@@ -16,7 +16,7 @@ namespace SystemX.GameState {
         private readonly GameScreen[] _screensToLoad;
         private bool _otherScreensAreGone;
 
-        private LoadingScreen(GameStatemanager screenManager, bool loadingIsSlow, GameScreen[] screensToLoad)
+        private LoadingScreen(GameStateManager screenManager, bool loadingIsSlow, GameScreen[] screensToLoad)
             : base(StrName) {
             _loadingIsSlow = loadingIsSlow;
             _screensToLoad = screensToLoad;
@@ -25,7 +25,7 @@ namespace SystemX.GameState {
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
         }
 
-        public static void Load(GameStatemanager screenManager, bool loadingIsSlow, params GameScreen[] screensToLoad) {
+        public static void Load(GameStateManager screenManager, bool loadingIsSlow, params GameScreen[] screensToLoad) {
             foreach (GameScreen screen in screenManager.GetScreens())
                 screen.ExitScreen();
 

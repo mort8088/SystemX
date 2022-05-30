@@ -13,7 +13,7 @@ namespace SystemX.GUI
         public readonly List<I_Visual> Visuals = new List<I_Visual>();
         private RasterizerState _rasterizerState;
 
-        public void LoadGraphics(GameStatemanager gsm)
+        public void LoadGraphics(GameStateManager gsm)
         {
             foreach (I_Visual guiVisual in Visuals) guiVisual.LoadGraphics(gsm);
 

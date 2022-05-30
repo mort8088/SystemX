@@ -8,7 +8,7 @@ using SystemX.Common;
 
 namespace SystemX.CommandProcesser.Commands {
     public class ClsCommand : I_Command {
-        public GameStatemanager Gm { get; set; }
+        public GameStateManager Gm { get; set; }
 
         public string Name {
             get {

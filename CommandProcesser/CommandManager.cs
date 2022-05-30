@@ -34,7 +34,7 @@ namespace SystemX.CommandProcesser {
 
         public static List<string> Outputbuffer { get; set; }
 
-        public static void Init(GameStatemanager gm) {
+        public static void Init(GameStateManager gm) {
             _logger = gm.LogFile;
 
             _commandSeperators = new char[2];

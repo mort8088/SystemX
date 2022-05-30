@@ -9,7 +9,7 @@ using SystemX.CommandProcesser.Commands;
 
 namespace SystemX.Common {
     public class ExitCommand : I_Command {
-        public GameStatemanager Gm { get; set; }
+        public GameStateManager Gm { get; set; }
 
         public string Name {
             get {

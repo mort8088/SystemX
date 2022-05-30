@@ -1,5 +1,5 @@
 ﻿// -----------------------------------------------------------------------
-// <copyright file="GameStatemanager.cs" company="Mort8088 Games">
+// <copyright file="GameStateManager.cs" company="Mort8088 Games">
 // Copyright (c) 2012-22 Dave Henry for Mort8088 Games.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -26,7 +26,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace SystemX.Common {
-    public class GameStatemanager : Game {
+    public class GameStateManager : Game {
         private readonly string _gameName;
         private readonly List<GameScreen> _screens = new List<GameScreen>();
         private readonly Stack _screenStack = new Stack();
@@ -421,12 +421,12 @@ namespace SystemX.Common {
         #endregion
 
         #region Creator
-        public GameStatemanager() {
+        public GameStateManager() {
             _gameName = "Default";
             DefaultInit();
         }
 
-        public GameStatemanager(string name) {
+        public GameStateManager(string name) {
             _gameName = name;
             DefaultInit();
         }
@@ -443,11 +443,12 @@ namespace SystemX.Common {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            CommandManager.Init(this);
-
             LogFile = new LoggerService(Path.Combine(PathHelper.GameFolder, string.Format("{0}.log", _gameName)));
             Services.AddService(typeof(I_LoggerService), LogFile);
             LogFile.WriteLine("Game State Manager Started.");
+
+            CommandManager.Init(this);
+
             if (File.Exists(Path.Combine(PathHelper.RootDirectory, string.Format("{0}.ini", _gameName)))) {
                 UsingDefaultSettings = false;
                 Settings = new ConfigIni(Path.Combine(PathHelper.RootDirectory, string.Format("{0}.ini", _gameName)));

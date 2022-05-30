@@ -119,7 +119,7 @@ namespace SystemX.GUI.Visuals
         public VerticalAlignment VerticalAlignment { get; set; }
         public Visibility Visibility { get; set; }
 
-        public void LoadGraphics(GameStatemanager gsm)
+        public void LoadGraphics(GameStateManager gsm)
         {
             _fx = new BasicEffect(gsm.GraphicsDevice)
             {

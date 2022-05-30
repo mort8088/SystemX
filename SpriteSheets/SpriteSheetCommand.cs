@@ -10,7 +10,7 @@ using SystemX.Common;
 
 namespace SystemX.SpriteSheets {
     public class SpriteSheetCommand : I_Command {
-        public GameStatemanager Gm { get; set; }
+        public GameStateManager Gm { get; set; }
 
         public string Name {
             get {

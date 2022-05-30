@@ -131,7 +131,7 @@ namespace SystemX.GameState {
         /// <summary>
         ///     Gets the manager that this screen belongs to.
         /// </summary>
-        public GameStatemanager ScreenManager { get; internal set; }
+        public GameStateManager ScreenManager { get; internal set; }
 
         public Point ScreenSize { get; set; }
 
