@@ -3,17 +3,34 @@
 // Copyright (c) 2012-22 Dave Henry for Mort8088 Games.
 // </copyright>
 // -----------------------------------------------------------------------
-
 using System;
 using Microsoft.Xna.Framework;
 
-namespace SystemX.GameState {
-    public class MenuEntry {
+namespace SystemX.GameState
+{
+    public class MenuEntry
+    {
         public float selectionFade;
 
-        public MenuEntry(string text) {
+        public MenuEntry(string text)
+        {
             Text = text;
+            TextColor = Color.White;
+            HighlightColor = Color.Orange;
+            BackgroundColor = Color.Black;
         }
+
+        // public MenuEntry(string text, Vector2 position, Vector2 targetPosition, Rectangle hotbox, Color textColor, Color highlightColor, Color backgroundColor)
+        // {
+        //     this.Text = text;
+        //     this.Position = position;
+        //     this.TargetPosition = targetPosition;
+        //     this.Hotbox = hotbox;
+        //     this.TextColor = textColor;
+        //     this.HighlightColor = highlightColor;
+        //     this.BackgroundColor = backgroundColor;
+
+        // }
 
         public string Text { get; set; }
         public Vector2 Position { get; set; }
@@ -24,12 +41,14 @@ namespace SystemX.GameState {
         public Color BackgroundColor { get; set; }
         public event EventHandler<EventArgs> Selected;
 
-        protected internal virtual void OnSelectEntry() {
+        protected internal virtual void OnSelectEntry()
+        {
             if (Selected != null)
                 Selected(this, new EventArgs());
         }
 
-        public virtual void Update(MenuScreen screen, bool isSelected, GameTime gameTime) {
+        public virtual void Update(MenuScreen screen, bool isSelected, GameTime gameTime)
+        {
             float fadeSpeed = (float)gameTime.ElapsedGameTime.TotalSeconds * 4;
 
             if (isSelected)

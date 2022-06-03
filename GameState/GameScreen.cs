@@ -51,7 +51,8 @@ namespace SystemX.GameState {
 
         protected GameScreen(string windowAsset)
             : this() {
-            if (string.IsNullOrEmpty(windowAsset)) throw new ArgumentNullException("windowAsset");
+            if (string.IsNullOrEmpty(windowAsset)) 
+                throw new ArgumentNullException("windowAsset");
 
             WindowAsset = Path.Combine("Data", "GUI", string.Format("{0}.GUI", windowAsset));
         }

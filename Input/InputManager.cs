@@ -57,7 +57,7 @@ namespace SystemX.Input {
             _currentGamePadStates = GamePad.GetState(PlayerIndex.One);
 
             #region Check for special Windows key-presses
-#if WINDOWS // This will only happen on a windows system
+//#if WINDOWS // This will only happen on a windows system
             if (((IsKeyPress(Keys.LeftAlt)) || IsKeyPress(Keys.RightAlt)) && (IsKeyPress(Keys.Enter)))
             {
                 OnAltEnter();
@@ -72,7 +72,7 @@ namespace SystemX.Input {
             {
                 OnTilde();
             }
-#endif
+//#endif
             #endregion
         }
 

@@ -37,6 +37,7 @@ namespace SystemX.GameState {
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
             if (!_otherScreensAreGone) return;
+
             ScreenManager.RemoveScreen(this);
 
             foreach (GameScreen screen in _screensToLoad.Where(screen => screen != null))
@@ -47,7 +48,8 @@ namespace SystemX.GameState {
             ScreenManager.ResetElapsedTime();
         }
 
-        public override void Draw(GameTime gameTime) {
+        public override void Draw(GameTime gameTime) 
+        {
             if ((ScreenState == ScreenState.Active) && (ScreenManager.GetScreens().Length == 1))
                 _otherScreensAreGone = true;
 

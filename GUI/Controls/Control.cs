@@ -179,6 +179,8 @@ namespace SystemX.GUI.Controls
         /// <param name="pos">Screen coordinates of the mouse</param>
         public virtual void OnLeftClick(Point pos)
         {
+            if (!this._visible) return;
+
             if (LeftClicked != null)
                 LeftClicked(this, pos);
         }
@@ -189,6 +191,8 @@ namespace SystemX.GUI.Controls
         /// <param name="pos">Screen coordinates of the mouse</param>
         public virtual void OnRightClick(Point pos)
         {
+            if (!this._visible) return;
+
             if (RightClicked != null)
                 RightClicked(this, pos);
         }
@@ -199,6 +203,8 @@ namespace SystemX.GUI.Controls
         /// <param name="pos">Screen coordinates of the mouse</param>
         public virtual void OnMouseOver(Point pos)
         {
+            if (!this._visible) return;
+            
             if (MouseOver != null)
                 MouseOver(this, pos);
         }
@@ -209,6 +215,8 @@ namespace SystemX.GUI.Controls
         /// <param name="pos">Screen coordinates of the mouse</param>
         public virtual void OnMouseEnter(Point pos)
         {
+            if (!this._visible) return;
+            
             if (MouseEnter != null)
                 MouseEnter(this, pos);
         }
@@ -219,6 +227,8 @@ namespace SystemX.GUI.Controls
         /// <param name="pos">Screen coordinates of the mouse</param>
         public virtual void OnMouseOut(Point pos)
         {
+            if (!this._visible) return;
+            
             if (MouseOut != null)
                 MouseOut(this, pos);
         }

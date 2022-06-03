@@ -47,7 +47,7 @@ namespace SystemX.GameState {
             ExitScreen();
         }
 
-        protected void OnCancel(object sender, EventArgs e) {
+        protected virtual void OnCancel(object sender, EventArgs e) {
             OnCancel();
         }
 
