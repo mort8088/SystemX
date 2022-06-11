@@ -6,7 +6,7 @@
 
 using SystemX.Common;
 
-namespace SystemX.CommandProcesser.Commands {
+namespace SystemX.CommandProcessor.Commands {
     public class ClsCommand : I_Command {
         public GameStateManager Gm { get; set; }
 

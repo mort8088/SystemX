@@ -7,4 +7,4 @@
         void Write(string line, params object[] args);
         void WriteLine(string line, params object[] args);
     }
-}
+} 

@@ -5,7 +5,7 @@
 // -----------------------------------------------------------------------
 
 using System;
-using SystemX.CommandProcesser.Commands;
+using SystemX.CommandProcessor.Commands;
 using SystemX.Common;
 
 namespace SystemX.SpriteSheets {

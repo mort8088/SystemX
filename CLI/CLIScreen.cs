@@ -6,7 +6,7 @@
 
 using System;
 using System.Collections.Generic;
-using SystemX.CommandProcesser;
+using SystemX.CommandProcessor;
 using SystemX.Extensions;
 using SystemX.GameState;
 using SystemX.Input;

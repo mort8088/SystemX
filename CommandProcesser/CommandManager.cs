@@ -9,13 +9,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
-using SystemX.CommandProcesser.Commands;
+using SystemX.CommandProcessor.Commands;
 using SystemX.Common;
 using SystemX.Helpers;
 using SystemX.Logger;
 using mort8088.XML;
 
-namespace SystemX.CommandProcesser {
+namespace SystemX.CommandProcessor {
     public static class CommandManager {
         private static I_LoggerService _logger;
         private static char[] _commandSeperators;

@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using SystemX.Common;
 
-namespace SystemX.CommandProcesser.Commands {
+namespace SystemX.CommandProcessor.Commands {
     public class HelpCommand : I_Command {
         public GameStateManager Gm { get; set; }
 

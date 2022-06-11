@@ -5,7 +5,7 @@
 // -----------------------------------------------------------------------
 
 using System;
-using SystemX.CommandProcesser.Commands;
+using SystemX.CommandProcessor.Commands;
 
 namespace SystemX.Common {
     public class ExitCommand : I_Command {

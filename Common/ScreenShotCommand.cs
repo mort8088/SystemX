@@ -6,7 +6,7 @@
 
 using System;
 using System.IO;
-using SystemX.CommandProcesser.Commands;
+using SystemX.CommandProcessor.Commands;
 
 namespace SystemX.Common {
     public class ScreenShotCommand : I_Command {

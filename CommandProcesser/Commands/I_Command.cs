@@ -6,7 +6,7 @@
 
 using SystemX.Common;
 
-namespace SystemX.CommandProcesser.Commands {
+namespace SystemX.CommandProcessor.Commands {
     public interface I_Command {
         /// <summary>
         ///     The GameStateManager that this command is running in.

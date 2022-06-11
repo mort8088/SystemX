@@ -12,7 +12,7 @@ using System.IO;
 using System.Linq;
 using SystemX.AudioLib;
 using SystemX.CLI;
-using SystemX.CommandProcesser;
+using SystemX.CommandProcessor;
 using SystemX.Config;
 using SystemX.Debug;
 using SystemX.Extensions;

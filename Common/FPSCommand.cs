@@ -5,8 +5,8 @@
 // -----------------------------------------------------------------------
 
 using System;
-using SystemX.CommandProcesser;
-using SystemX.CommandProcesser.Commands;
+using SystemX.CommandProcessor;
+using SystemX.CommandProcessor.Commands;
 
 namespace SystemX.Common {
     public class FPSCommand : I_Command {

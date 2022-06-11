@@ -7,7 +7,7 @@
 using System;
 using SystemX.ExceptionHelper;
 
-namespace SystemX.CommandProcesser.Commands {
+namespace SystemX.CommandProcessor.Commands {
     public class CommandException : ErrorException {
         public CommandException(string errorMessage)
             : base(errorMessage) {}

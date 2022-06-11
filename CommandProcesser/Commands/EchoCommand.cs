@@ -6,7 +6,7 @@
 
 using SystemX.Common;
 
-namespace SystemX.CommandProcesser.Commands {
+namespace SystemX.CommandProcessor.Commands {
     public class EchoCommand : I_Command {
         private string _tmp = string.Empty;
         public GameStateManager Gm { get; set; }
