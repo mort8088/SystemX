@@ -10,64 +10,73 @@ using SystemX.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace SystemX.GameState {
-    public abstract class MenuScreen : GameScreen {
+namespace SystemX.GameState
+{
+    public abstract class MenuScreen : GameScreen
+    {
         private const float menuSpeed = 3f;
         private readonly List<MenuEntry> menuEntries = new List<MenuEntry>();
         protected SpriteFont font;
         protected Rectangle HighlightBox;
-        protected string menuTitle;
+        protected string menuTitle = "Main Menu";
         private int selectedEntry;
-        protected Vector2 TitlePosition;
+        protected Vector2 TitlePosition = Vector2.Zero;
+        protected Color TitleColor = Color.Red;
 
-        public MenuScreen(string menuTitle) {
+        public MenuScreen(string menuTitle)
+        {
             this.menuTitle = menuTitle;
 
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
         }
-
-        protected IList<MenuEntry> MenuEntries {
-            get {
+        protected IList<MenuEntry> MenuEntries
+        {
+            get
+            {
                 return menuEntries;
             }
         }
-
-        public override void LoadContent() {
+        public override void LoadContent()
+        {
             font = ScreenManager.Font["menufont"];
 
             base.LoadContent();
         }
-
-        protected virtual void OnSelectEntry(int entryIndex) {
+        protected virtual void OnSelectEntry(int entryIndex)
+        {
             menuEntries[entryIndex].OnSelectEntry();
         }
-
-        protected virtual void OnCancel() {
+        protected virtual void OnCancel()
+        {
             ExitScreen();
         }
-
-        protected virtual void OnCancel(object sender, EventArgs e) {
+        protected virtual void OnCancel(object sender, EventArgs e)
+        {
             OnCancel();
         }
-
-        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen) {
+        public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
+        {
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
 
             // Update each nested MenuEntry object.
-            for (int i = 0; i < menuEntries.Count; i++) {
+            for (int i = 0; i < menuEntries.Count; i++)
+            {
                 bool isSelected = IsActive && (i == selectedEntry);
 
                 menuEntries[i].Update(this, isSelected, gameTime);
             }
         }
-
-        public override void HandleInput(InputManager input) {
-            if (ScreenManager.Settings["Misc"]["MouseEnabled"].GetValueAsBool()) {
-                for (int i = 0; i < menuEntries.Count; i++) {
+        public override void HandleInput(InputManager input)
+        {
+            if (ScreenManager.Settings["Misc"]["MouseEnabled"].GetValueAsBool())
+            {
+                for (int i = 0; i < menuEntries.Count; i++)
+                {
                     MenuEntry menuItem = menuEntries[i];
 
-                    if (menuItem.Hotbox.Contains(input.GetMouseCoordinats())) {
+                    if (menuItem.Hotbox.Contains(input.GetMouseCoordinats()))
+                    {
                         selectedEntry = i;
                         if (input.IsMouseLeftClick()) OnSelectEntry(selectedEntry);
                         break;
@@ -75,12 +84,15 @@ namespace SystemX.GameState {
                 }
             }
 
-            if (input.IsMenuUp()) {
+            if (input.IsMenuUp())
+            {
                 selectedEntry--;
 
                 if (selectedEntry < 0)
                     selectedEntry = menuEntries.Count - 1;
-            } else if (input.IsMenuDown()) {
+            }
+            else if (input.IsMenuDown())
+            {
                 selectedEntry++;
 
                 if (selectedEntry >= menuEntries.Count)
@@ -90,8 +102,8 @@ namespace SystemX.GameState {
             if (input.IsMenuSelect()) OnSelectEntry(selectedEntry);
             else if (input.IsMenuCancel()) OnCancel();
         }
-
-        public override void Draw(GameTime gameTime) {
+        public override void Draw(GameTime gameTime)
+        {
             // make sure our entries are in the right place before we draw them
             UpdateMenuEntryLocations();
 
@@ -103,7 +115,8 @@ namespace SystemX.GameState {
             spriteBatch.Begin();
 
             // Draw each menu entry in turn.
-            for (int i = 0; i < menuEntries.Count; i++) {
+            for (int i = 0; i < menuEntries.Count; i++)
+            {
                 MenuEntry menuEntry = menuEntries[i];
 
                 bool isSelected = IsActive && (i == selectedEntry);
@@ -117,13 +130,15 @@ namespace SystemX.GameState {
                 color *= TransitionAlpha;
 
                 // Draw text, centered on the middle of each line.
-                Vector2 origin = Vector2.Zero; // (0, font.LineSpacing / 2);
-                if (isSelected) {
+                Vector2 origin = new Vector2(0, font.LineSpacing / 2);
+                if (isSelected)
+                {
                     // Vector2 margin = font.MeasureString("*") * scale;
                     // Vector2 MeasureString = font.MeasureString(menuEntry.Text);
                     Rectangle TargetBlock = menuEntry.Hotbox;
 
-                    if (HighlightBox != TargetBlock) {
+                    if (HighlightBox != TargetBlock)
+                    {
                         HighlightBox.X += (int)MathHelper.Clamp(TargetBlock.X - HighlightBox.X, -menuSpeed, menuSpeed);
                         HighlightBox.Y += (int)MathHelper.Clamp(TargetBlock.Y - HighlightBox.Y, -menuSpeed, menuSpeed);
                         HighlightBox.Width += (int)(MathHelper.Clamp(TargetBlock.Width - HighlightBox.Width, -menuSpeed * 5, menuSpeed * 5) * scale);
@@ -144,7 +159,7 @@ namespace SystemX.GameState {
             // Draw the menu title centered on the screen
             Vector2 titleOrigin = Vector2.Zero; // font.MeasureString(this.menuTitle) / 2;
             Vector2 titlePosition = TitlePosition;
-            Color titleColor = new Color(255, 0, 0, 128) * TransitionAlpha;
+            Color titleColor = TitleColor * TransitionAlpha;
             float titleScale = 2f * TransitionAlpha;
 
             titlePosition.Y -= transitionOffset * 100;
@@ -153,12 +168,13 @@ namespace SystemX.GameState {
 
             spriteBatch.End();
         }
-
-        protected virtual void UpdateMenuEntryLocations() {
+        protected virtual void UpdateMenuEntryLocations()
+        {
             const float overlap = 0.5f;
             int numEntries = menuEntries.Count;
 
-            for (int i = 0; i < menuEntries.Count; i++) {
+            for (int i = 0; i < menuEntries.Count; i++)
+            {
                 float transitionOffset = MathHelper.Clamp((TransitionPosition - (1 - overlap) * i / numEntries) / overlap, 0, 1);
 
                 MenuEntry menuEntry = menuEntries[i];

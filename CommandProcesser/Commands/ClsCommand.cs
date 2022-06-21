@@ -26,7 +26,7 @@ namespace SystemX.CommandProcessor.Commands {
             if (args[0].ToUpper() != Name)
                 throw new CommandException(string.Format("Wrong command sent - '{0}'.", args[0].ToUpper()));
 
-            CommandManager.Outputbuffer.Clear();
+            CommandManager.OutputBuffer.Clear();
         }
     }
 }

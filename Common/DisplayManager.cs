@@ -7,7 +7,6 @@
 using System;
 using System.Drawing;
 using System.IO;
-//using System.Windows.Forms;
 using SystemX.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -523,7 +522,9 @@ namespace SystemX.Common {
 
             string filePath;
             do {
-                filePath = string.Format("{0}\\ScreenShot_{1:00}.png", _window.Title, screenshotNumber++);
+                filePath = Path.Combine(_window.Title, string.Format("ScreenShot_{0:00}.png", screenshotNumber++));
+
+
             } while (File.Exists(Path.Combine(screenShotDir, filePath)));
 
             using (FileStream fs = new FileStream(Path.Combine(screenShotDir, filePath), FileMode.OpenOrCreate)) {

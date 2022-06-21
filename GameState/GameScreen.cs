@@ -247,6 +247,9 @@ namespace SystemX.GameState {
         ///     This is called when the screen should draw itself.
         /// </summary>
         public virtual void Draw(GameTime gameTime) {
+            // Darken down any other screens that were drawn beneath the pop-up.
+            if (this.IsPopup) ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2 / 3);
+            
             if (Window != null) Renderer.Draw(ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
         }
 

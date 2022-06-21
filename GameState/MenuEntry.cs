@@ -17,20 +17,8 @@ namespace SystemX.GameState
             Text = text;
             TextColor = Color.White;
             HighlightColor = Color.Orange;
-            BackgroundColor = Color.Black;
+            BackgroundColor = Color.CornflowerBlue;
         }
-
-        // public MenuEntry(string text, Vector2 position, Vector2 targetPosition, Rectangle hotbox, Color textColor, Color highlightColor, Color backgroundColor)
-        // {
-        //     this.Text = text;
-        //     this.Position = position;
-        //     this.TargetPosition = targetPosition;
-        //     this.Hotbox = hotbox;
-        //     this.TextColor = textColor;
-        //     this.HighlightColor = highlightColor;
-        //     this.BackgroundColor = backgroundColor;
-
-        // }
 
         public string Text { get; set; }
         public Vector2 Position { get; set; }

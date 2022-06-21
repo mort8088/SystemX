@@ -15,10 +15,12 @@ using SystemX.Helpers;
 using SystemX.Logger;
 using mort8088.XML;
 
-namespace SystemX.CommandProcessor {
-    public static class CommandManager {
+namespace SystemX.CommandProcessor
+{
+    public static class CommandManager
+    {
         private static I_LoggerService _logger;
-        private static char[] _commandSeperators;
+        private static char[] _commandSeparators;
 
         /// <summary>
         ///     Loaded Game Commands - Basic functionality
@@ -32,48 +34,56 @@ namespace SystemX.CommandProcessor {
 
         //public static Queue<MessageRequest> MessageQueue = new Queue<MessageRequest>();
 
-        public static List<string> Outputbuffer { get; set; }
+        public static List<string> OutputBuffer { get; set; }
 
-        public static void Init(GameStateManager gm) {
+        public static void Init(GameStateManager gm)
+        {
             _logger = gm.LogFile;
 
-            _commandSeperators = new char[2];
-            _commandSeperators[0] = ',';
-            _commandSeperators[1] = ' ';
+            _commandSeparators = new char[2];
+            _commandSeparators[0] = ',';
+            _commandSeparators[1] = ' ';
 
             // Set-up Output buffer
-            Outputbuffer = new List<string>();
+            OutputBuffer = new List<string>();
 
             // Check the current Current Domain for more DLLs that might have I_Command objects to add
-            foreach (I_Command plugin in AppDomain.CurrentDomain.GetAssemblies().SelectMany(asm => (from asmType in asm.GetTypes() where asmType.GetInterface("I_Command") != null select (I_Command)Activator.CreateInstance(asmType)))) {
+            foreach (I_Command plugin in AppDomain.CurrentDomain.GetAssemblies().SelectMany(asm => (from asmType in asm.GetTypes() where asmType.GetInterface("I_Command") != null select (I_Command)Activator.CreateInstance(asmType))))
+            {
                 plugin.Gm = gm;
                 CommandList.Add(plugin.Name.ToUpper(), plugin);
             }
 
             // Check for script files
             List<string> filenames = new List<string>();
-            filenames.AddRange(Directory.GetFiles(Path.Combine(gm.Content.RootDirectory, "Data","Script"), "*.sxs"));
-            filenames.AddRange(Directory.GetFiles(Path.Combine(gm.Content.RootDirectory, "Data","Script"), "*.SXS"));
-            foreach (string filename in filenames) {
-                try {
+            filenames.AddRange(Directory.GetFiles(Path.Combine(gm.Content.RootDirectory, "Data", "Script"), "*.sxs"));
+            filenames.AddRange(Directory.GetFiles(Path.Combine(gm.Content.RootDirectory, "Data", "Script"), "*.SXS"));
+            foreach (string filename in filenames)
+            {
+                try
+                {
                     XmlDocument scriptFile = new XmlDocument();
                     scriptFile.Load(filename);
                     if (scriptFile.DocumentElement != null &&
                         scriptFile.DocumentElement.Name != "SystemX") continue;
 
                     XmlNodeList methods = scriptFile.SelectNodes("//scripting/method");
-                    if (methods != null) {
-                        foreach (XmlElement method in methods) {
+                    if (methods != null)
+                    {
+                        foreach (XmlElement method in methods)
+                        {
                             string strName = XmlHelper.ReadAttrib(method, "name", "ERROR");
                             if (strName.Equals("ERROR") ||
-                                MethodList.ContainsKey(strName)) {
+                                MethodList.ContainsKey(strName))
+                            {
                                 _logger.WriteLine("Scripting Method in {0} missing name attrib", filename);
                                 continue;
                             }
 
                             string strCommands = XmlHelper.ReadTextNode(method, "commands", "ERROR");
                             if (strCommands.Equals("ERROR") ||
-                                string.IsNullOrEmpty(strCommands.Trim())) {
+                                string.IsNullOrEmpty(strCommands.Trim()))
+                            {
                                 _logger.WriteLine("Scripting Method {0} in {1} missing commands node", strName, filename);
                                 continue;
                             }
@@ -82,38 +92,45 @@ namespace SystemX.CommandProcessor {
                         }
                     }
                 }
-                catch {
+                catch
+                {
                     _logger.WriteLine("There was an error reading the scripting file {0}", filename);
                 }
             }
         }
 
-        public static void Process(object sender, string command) {
-            try {
+        public static void Process(object sender, string command)
+        {
+            try
+            {
                 // Process should action the requested command immediately rather than buffer things until the next update.
-                string[] tmpParams = command.Split(_commandSeperators, StringSplitOptions.RemoveEmptyEntries);
+                string[] tmpParams = command.Split(_commandSeparators, StringSplitOptions.RemoveEmptyEntries);
 
                 if (tmpParams.Length == 0)
                     return;
 
                 if (CommandList.Keys.Contains(tmpParams[0].ToUpper())) CommandList[tmpParams[0].ToUpper()].Execute(sender, tmpParams);
-                else if (MethodList.Keys.Contains(tmpParams[0].ToUpper())) {
+                else if (MethodList.Keys.Contains(tmpParams[0].ToUpper()))
+                {
                     string[] commandCalls = StringHelper.SplitOnNewLine(MethodList[tmpParams[0].ToUpper()]);
 
                     foreach (string commandCall in commandCalls) Process(sender, commandCall.Trim());
-                } else Write(string.Format("Unknown Command \"{0}\"", tmpParams[0].ToUpper()));
+                }
+                else Write(string.Format("Unknown Command \"{0}\"", tmpParams[0].ToUpper()));
             }
-            catch (CommandException ce) {
+            catch (CommandException ce)
+            {
                 Write(ce.InnerException == null
                           ? string.Format("{0}", ce.Message)
                           : string.Format("{0}", ce.InnerException.Message));
             }
         }
 
-        public static void Write(string msg) {
+        public static void Write(string msg)
+        {
             string[] lines = StringHelper.SplitOnNewLine(msg);
 
-            foreach (string item in lines) Outputbuffer.Add(item);
+            foreach (string item in lines) OutputBuffer.Add(item);
         }
     }
 }

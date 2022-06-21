@@ -214,7 +214,7 @@ namespace SystemX.CLI {
 
             // Draw each lines.
             Vector2 pos = new Vector2(leftMargin, topMargin);
-            foreach (string line in CommandManager.Outputbuffer) {
+            foreach (string line in CommandManager.OutputBuffer) {
                 spriteBatch.DrawString(tmpFont, line, pos, Color.LightGreen);
                 pos.Y += tmpFont.LineSpacing;
             }
