@@ -110,7 +110,7 @@ namespace SystemX.Input {
             return _mouseReadMode;
         }
 
-        public Point GetMouseCoordinats() {
+        public Point GetMouseCoordinates() {
             if (_mousePos == Point.Zero) {
                 float xPec = (_currentMouseState.X - _currentDisplay.X) / (float)_currentDisplay.Width * 100.0f;
                 float yPec = (_currentMouseState.Y - _currentDisplay.Y) / (float)_currentDisplay.Height * 100.0f;

@@ -204,11 +204,10 @@ namespace SystemX.Extensions {
         //     The color to tint a sprite. Use Color.White for full color with no tinting.
         public void DrawSprite(string texture, Rectangle destinationRectangle, Rectangle? sourceRectangle, Color color) {
             Rectangle tmp;
-            if (sourceRectangle.HasValue) {
+            if (sourceRectangle.HasValue) 
                 tmp = sourceRectangle.Value;
-                tmp.X += _spriteBank.Sheets[_pageName][texture].Source.X;
-                tmp.Y += _spriteBank.Sheets[_pageName][texture].Source.Y;
-            } else tmp = _spriteBank.Sheets[_pageName][texture].Source;
+            else 
+                tmp = _spriteBank.Sheets[_pageName][texture].Source;
             Draw(_spriteBank.Sheets[_pageName].Page, destinationRectangle, tmp, color);
         }
 
@@ -232,11 +231,10 @@ namespace SystemX.Extensions {
         //     The color to tint a sprite. Use Color.White for full color with no tinting.
         public void DrawSprite(string texture, Vector2 position, Rectangle? sourceRectangle, Color color) {
             Rectangle tmp;
-            if (sourceRectangle.HasValue) {
+            if (sourceRectangle.HasValue) 
                 tmp = sourceRectangle.Value;
-                tmp.X += _spriteBank.Sheets[_pageName][texture].Source.X;
-                tmp.Y += _spriteBank.Sheets[_pageName][texture].Source.Y;
-            } else tmp = _spriteBank.Sheets[_pageName][texture].Source;
+            else 
+                tmp = _spriteBank.Sheets[_pageName][texture].Source;
             Draw(_spriteBank.Sheets[_pageName].Page, position, tmp, color);
         }
 
@@ -277,11 +275,10 @@ namespace SystemX.Extensions {
         //     drawing.
         public void DrawSprite(string texture, Rectangle destinationRectangle, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
             Rectangle tmp;
-            if (sourceRectangle.HasValue) {
+            if (sourceRectangle.HasValue) 
                 tmp = sourceRectangle.Value;
-                tmp.X += _spriteBank.Sheets[_pageName][texture].Source.X;
-                tmp.Y += _spriteBank.Sheets[_pageName][texture].Source.Y;
-            } else tmp = _spriteBank.Sheets[_pageName][texture].Source;
+            else 
+                tmp = _spriteBank.Sheets[_pageName][texture].Source;
             Draw(_spriteBank.Sheets[_pageName].Page, destinationRectangle, tmp, color, rotation, origin, effects, layerDepth);
         }
 
@@ -323,11 +320,10 @@ namespace SystemX.Extensions {
         //     drawing.
         public void DrawSprite(string texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
             Rectangle tmp;
-            if (sourceRectangle.HasValue) {
+            if (sourceRectangle.HasValue) 
                 tmp = sourceRectangle.Value;
-                tmp.X += _spriteBank.Sheets[_pageName][texture].Source.X;
-                tmp.Y += _spriteBank.Sheets[_pageName][texture].Source.Y;
-            } else tmp = _spriteBank.Sheets[_pageName][texture].Source;
+            else 
+                tmp = _spriteBank.Sheets[_pageName][texture].Source;
             Draw(_spriteBank.Sheets[_pageName].Page, position, tmp, color, rotation, origin, scale, effects, layerDepth);
         }
 
@@ -369,11 +365,10 @@ namespace SystemX.Extensions {
         //     drawing.
         public void DrawSprite(string texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
             Rectangle tmp;
-            if (sourceRectangle.HasValue) {
+            if (sourceRectangle.HasValue) 
                 tmp = sourceRectangle.Value;
-                tmp.X += _spriteBank.Sheets[_pageName][texture].Source.X;
-                tmp.Y += _spriteBank.Sheets[_pageName][texture].Source.Y;
-            } else tmp = _spriteBank.Sheets[_pageName][texture].Source;
+            else 
+                tmp = _spriteBank.Sheets[_pageName][texture].Source;
             Draw(_spriteBank.Sheets[_pageName].Page, position, tmp, color, rotation, origin, scale, effects, layerDepth);
         }
 

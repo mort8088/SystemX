@@ -278,7 +278,7 @@ namespace SystemX.Common {
 
             if (MouseType == MouseDisplayType.Software) {
                 SpriteBatch.Begin();
-                Point tmp = Input.GetMouseCoordinats();
+                Point tmp = Input.GetMouseCoordinates();
                 _mouseDrawPos = new Vector2(tmp.X - MouseOffset.X, tmp.Y - MouseOffset.Y);
                 SpriteBatch.DrawSprite(MouseSprite, _mouseDrawPos, Color.White);
                 SpriteBatch.End();
@@ -432,11 +432,15 @@ namespace SystemX.Common {
         }
 
         private void DefaultInit() {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
+            string version = fvi.FileVersion;
+
             PathHelper.SetGameName(_gameName);
 
             ScreenShotDir = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
 
-            Window.Title = string.Format("{0}", _gameName);
+            Window.Title = string.Format("{0} v{1}", _gameName, version);
 
             IsMouseVisible = true;
 

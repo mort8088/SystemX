@@ -75,7 +75,7 @@ namespace SystemX.GameState
                 {
                     MenuEntry menuItem = menuEntries[i];
 
-                    if (menuItem.Hotbox.Contains(input.GetMouseCoordinats()))
+                    if (menuItem.Hotbox.Contains(input.GetMouseCoordinates()))
                     {
                         selectedEntry = i;
                         if (input.IsMouseLeftClick()) OnSelectEntry(selectedEntry);

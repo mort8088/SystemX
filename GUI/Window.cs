@@ -91,7 +91,7 @@ namespace SystemX.GUI
         {
             if (!Enabled) return false;
 
-            Point pos = input.GetMouseCoordinats();
+            Point pos = input.GetMouseCoordinates();
 
             _mouseRect.X = pos.X - HalfMouseSize;
             _mouseRect.Y = pos.Y - HalfMouseSize;
