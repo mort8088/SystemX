@@ -119,11 +119,9 @@ namespace SystemX.Common {
             window.ClientSizeChanged += WindowClientSizeChanged;
 
 #if NOVSYNC
-
-    // Don't force vsync, but only for the development build, I want to see running at speed.
+            // Don't force vsync, but only for the development build, I want to see running at speed.
             graphicsDeviceManager.SynchronizeWithVerticalRetrace = false;
 #else
-
             // force vsync, because not doing so is UGLY and LAZY and BAD and developers that don't use it should be SHOT :P
             graphicsDeviceManager.SynchronizeWithVerticalRetrace = true;
 #endif

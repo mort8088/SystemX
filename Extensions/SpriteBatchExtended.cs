@@ -372,6 +372,234 @@ namespace SystemX.Extensions {
             Draw(_spriteBank.Sheets[_pageName].Page, position, tmp, color, rotation, origin, scale, effects, layerDepth);
         }
 
+        //
+        // Summary:
+        //     Adds a sprite to a batch of sprites for rendering using the specified texture,
+        //     destination rectangle, and color. Reference page contains links to related
+        //     code samples.
+        //
+        // Parameters:
+        //   texture:
+        //     A texture.
+        //
+        //   destinationRectangle:
+        //     A rectangle that specifies (in screen coordinates) the destination for drawing
+        //     the sprite.
+        //
+        //   color:
+        //     The color to tint a sprite. Use Color.White for full color with no tinting.
+        public void DrawSprite(int texture, Rectangle destinationRectangle, Color color) {
+            Draw(_spriteBank.Sheets[_pageName].Page, destinationRectangle, _spriteBank.Sheets[_pageName][texture].Source, color);
+        }
+
+        //
+        // Summary:
+        //     Adds a sprite to a batch of sprites for rendering using the specified texture,
+        //     position and color. Reference page contains links to related code samples.
+        //
+        // Parameters:
+        //   texture:
+        //     A texture.
+        //
+        //   position:
+        //     The location (in screen coordinates) to draw the sprite.
+        //
+        //   color:
+        //     The color to tint a sprite. Use Color.White for full color with no tinting.
+        public void DrawSprite(int texture, Vector2 position, Color color) {
+            Draw(_spriteBank.Sheets[_pageName].Page, position, _spriteBank.Sheets[_pageName][texture].Source, color);
+        }
+
+        //
+        // Summary:
+        //     Adds a sprite to a batch of sprites for rendering using the specified texture,
+        //     destination rectangle, source rectangle, and color.
+        //
+        // Parameters:
+        //   texture:
+        //     A texture.
+        //
+        //   destinationRectangle:
+        //     A rectangle that specifies (in screen coordinates) the destination for drawing
+        //     the sprite. If this rectangle is not the same size as the source rectangle,
+        //     the sprite will be scaled to fit.
+        //
+        //   sourceRectangle:
+        //     A rectangle that specifies (in texels) the source texels from a texture.
+        //     Use null to draw the entire texture.
+        //
+        //   color:
+        //     The color to tint a sprite. Use Color.White for full color with no tinting.
+        public void DrawSprite(int texture, Rectangle destinationRectangle, Rectangle? sourceRectangle, Color color) {
+            Rectangle tmp;
+            if (sourceRectangle.HasValue) 
+                tmp = sourceRectangle.Value;
+            else 
+                tmp = _spriteBank.Sheets[_pageName][texture].Source;
+            Draw(_spriteBank.Sheets[_pageName].Page, destinationRectangle, tmp, color);
+        }
+
+        //
+        // Summary:
+        //     Adds a sprite to a batch of sprites for rendering using the specified texture,
+        //     position, source rectangle, and color.
+        //
+        // Parameters:
+        //   texture:
+        //     A texture.
+        //
+        //   position:
+        //     The location (in screen coordinates) to draw the sprite.
+        //
+        //   sourceRectangle:
+        //     A rectangle that specifies (in texels) the source texels from a texture.
+        //     Use null to draw the entire texture.
+        //
+        //   color:
+        //     The color to tint a sprite. Use Color.White for full color with no tinting.
+        public void DrawSprite(int texture, Vector2 position, Rectangle? sourceRectangle, Color color) {
+            Rectangle tmp;
+            if (sourceRectangle.HasValue) 
+                tmp = sourceRectangle.Value;
+            else 
+                tmp = _spriteBank.Sheets[_pageName][texture].Source;
+            Draw(_spriteBank.Sheets[_pageName].Page, position, tmp, color);
+        }
+
+        //
+        // Summary:
+        //     Adds a sprite to a batch of sprites for rendering using the specified texture,
+        //     destination rectangle, source rectangle, color, rotation, origin, effects
+        //     and layer.
+        //
+        // Parameters:
+        //   texture:
+        //     A texture.
+        //
+        //   destinationRectangle:
+        //     A rectangle that specifies (in screen coordinates) the destination for drawing
+        //     the sprite. If this rectangle is not the same size as the source rectangle,
+        //     the sprite will be scaled to fit.
+        //
+        //   sourceRectangle:
+        //     A rectangle that specifies (in texels) the source texels from a texture.
+        //     Use null to draw the entire texture.
+        //
+        //   color:
+        //     The color to tint a sprite. Use Color.White for full color with no tinting.
+        //
+        //   rotation:
+        //     Specifies the angle (in radians) to rotate the sprite about its center.
+        //
+        //   origin:
+        //     The sprite origin; the default is (0,0) which represents the upper-left corner.
+        //
+        //   effects:
+        //     Effects to apply.
+        //
+        //   layerDepth:
+        //     The depth of a layer. By default, 0 represents the front layer and 1 represents
+        //     a back layer. Use SpriteSortMode if you want sprites to be sorted during
+        //     drawing.
+        public void DrawSprite(int texture, Rectangle destinationRectangle, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth) {
+            Rectangle tmp;
+            if (sourceRectangle.HasValue) 
+                tmp = sourceRectangle.Value;
+            else 
+                tmp = _spriteBank.Sheets[_pageName][texture].Source;
+            Draw(_spriteBank.Sheets[_pageName].Page, destinationRectangle, tmp, color, rotation, origin, effects, layerDepth);
+        }
+
+        //
+        // Summary:
+        //     Adds a sprite to a batch of sprites for rendering using the specified texture,
+        //     position, source rectangle, color, rotation, origin, scale, effects, and
+        //     layer. Reference page contains links to related code samples.
+        //
+        // Parameters:
+        //   texture:
+        //     A texture.
+        //
+        //   position:
+        //     The location (in screen coordinates) to draw the sprite.
+        //
+        //   sourceRectangle:
+        //     A rectangle that specifies (in texels) the source texels from a texture.
+        //     Use null to draw the entire texture.
+        //
+        //   color:
+        //     The color to tint a sprite. Use Color.White for full color with no tinting.
+        //
+        //   rotation:
+        //     Specifies the angle (in radians) to rotate the sprite about its center.
+        //
+        //   origin:
+        //     The sprite origin; the default is (0,0) which represents the upper-left corner.
+        //
+        //   scale:
+        //     Scale factor.
+        //
+        //   effects:
+        //     Effects to apply.
+        //
+        //   layerDepth:
+        //     The depth of a layer. By default, 0 represents the front layer and 1 represents
+        //     a back layer. Use SpriteSortMode if you want sprites to be sorted during
+        //     drawing.
+        public void DrawSprite(int texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth) {
+            Rectangle tmp;
+            if (sourceRectangle.HasValue) 
+                tmp = sourceRectangle.Value;
+            else 
+                tmp = _spriteBank.Sheets[_pageName][texture].Source;
+            Draw(_spriteBank.Sheets[_pageName].Page, position, tmp, color, rotation, origin, scale, effects, layerDepth);
+        }
+
+        //
+        // Summary:
+        //     Adds a sprite to a batch of sprites for rendering using the specified texture,
+        //     position, source rectangle, color, rotation, origin, scale, effects and layer.
+        //     Reference page contains links to related code samples.
+        //
+        // Parameters:
+        //   texture:
+        //     A texture.
+        //
+        //   position:
+        //     The location (in screen coordinates) to draw the sprite.
+        //
+        //   sourceRectangle:
+        //     A rectangle that specifies (in texels) the source texels from a texture.
+        //     Use null to draw the entire texture.
+        //
+        //   color:
+        //     The color to tint a sprite. Use Color.White for full color with no tinting.
+        //
+        //   rotation:
+        //     Specifies the angle (in radians) to rotate the sprite about its center.
+        //
+        //   origin:
+        //     The sprite origin; the default is (0,0) which represents the upper-left corner.
+        //
+        //   scale:
+        //     Scale factor.
+        //
+        //   effects:
+        //     Effects to apply.
+        //
+        //   layerDepth:
+        //     The depth of a layer. By default, 0 represents the front layer and 1 represents
+        //     a back layer. Use SpriteSortMode if you want sprites to be sorted during
+        //     drawing.
+        public void DrawSprite(int texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth) {
+            Rectangle tmp;
+            if (sourceRectangle.HasValue) 
+                tmp = sourceRectangle.Value;
+            else 
+                tmp = _spriteBank.Sheets[_pageName][texture].Source;
+            Draw(_spriteBank.Sheets[_pageName].Page, position, tmp, color, rotation, origin, scale, effects, layerDepth);
+        }
+
         /// <summary>
         /// </summary>
         /// <param name="spriteFont"></param>
