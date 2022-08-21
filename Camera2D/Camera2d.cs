@@ -3,19 +3,16 @@ using Microsoft.Xna.Framework;
 
 namespace SystemX.Camera2D
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
     public class Camera2d : I_2dCamera
     {
         private Vector2 positionValue;
         private Vector2 _BestPosition;
         private Vector2 _DisplaySize;
-        private Rectangle _Bounds;
+        private Rectangle _Bounds = Rectangle.Empty;
 
         #region I_2dCamera Members
         /// <summary>
-        /// Get/Set the postion value of the camera
+        /// Get/Set the position value of the camera
         /// </summary>
         public Vector2 Position
         {
@@ -72,7 +69,7 @@ namespace SystemX.Camera2D
 
         private void CheckBounds()
         {
-            if (_Bounds != null)
+            if (_Bounds != Rectangle.Empty)
             {
                 if (positionValue.X < _Bounds.Left) positionValue.X = _Bounds.Left;
                 if (positionValue.X > _Bounds.Right) positionValue.X = _Bounds.Right;
